@@ -66,6 +66,16 @@ class ReassignRequest(BaseModel):
     pull_request_id: str
     old_user_id: str
 
+class ReviewerStat(BaseModel):
+    user_id: str
+    username: str
+    assigned_reviews_count: int
+
+class GlobalStatsResponse(BaseModel):
+    total_prs: int
+    merged_prs: int
+    reviewers_stats: List[ReviewerStat]
+
 def raise_api_error(code: str, message: str, status_code: int):
     return JSONResponse(
         status_code=status_code,
