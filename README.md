@@ -6,3 +6,5 @@ sudo docker-compose up
 ```
 
 In this service added endpoint for get stats --- `/stats`
+
+Also made performance test with locust --- report in .html file in repository
