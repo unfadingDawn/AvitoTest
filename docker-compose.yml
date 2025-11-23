@@ -1,4 +1,16 @@
 services:
+  app:
+      build: .             
+      container_name: fastapi_app
+      ports:
+        - "8080:8080"      
+      depends_on:
+        - db               
+      restart: always      
+      environment:
+        DATABASE_URL: postgresql+psycopg2://yrii:secretpass@db:5432/prdb
+  
+
   db:
     image: postgres:15-alpine  
     container_name: postgres_container
@@ -8,7 +20,7 @@ services:
       POSTGRES_PASSWORD: secretpass 
       POSTGRES_DB: prdb         
     ports:
-      - "8080:5432"           
+      - "8000:5432"           
     volumes:
       - postgres_data:/var/lib/postgresql/data 
 
