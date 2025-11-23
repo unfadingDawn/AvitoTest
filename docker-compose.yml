@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:15-alpine  
+    container_name: postgres_container
+    restart: always
+    environment:
+      POSTGRES_USER: yrii           
+      POSTGRES_PASSWORD: secretpass 
+      POSTGRES_DB: prdb         
+    ports:
+      - "8080:5432"           
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
+
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: yuriylitvinov08@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data: 
